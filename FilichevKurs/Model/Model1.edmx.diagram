@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="d973aaca69504fd48ab58a405ffd93e6" Name="Diagram1">
+        <EntityTypeShape EntityType="FilichevKursModel.Clients" Width="1.5" PointX="8.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FilichevKursModel.Employees" Width="1.5" PointX="3" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FilichevKursModel.EquipmentStatus" Width="1.5" PointX="3" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="FilichevKursModel.EquipmentTypes" Width="1.5" PointX="3" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FilichevKursModel.EventEquipment" Width="1.5" PointX="7.5" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="FilichevKursModel.EventParticipations" Width="1.5" PointX="10.5" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="FilichevKursModel.Events" Width="1.5" PointX="5.25" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="FilichevKursModel.EventTypes" Width="1.5" PointX="3" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="FilichevKursModel.MilitaryEquipment" Width="1.5" PointX="5.25" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FilichevKursModel.Positions" Width="1.5" PointX="0.75" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="FilichevKursModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="8.875" IsExpanded="true" />
+        <AssociationConnector Association="FilichevKursModel.FK__EventPart__Clien__534D60F1" ManuallyRouted="false" />
+        <AssociationConnector Association="FilichevKursModel.FK__Employees__Posit__3E52440B" ManuallyRouted="false" />
+        <AssociationConnector Association="FilichevKursModel.FK__Events__Responsi__4F7CD00D" ManuallyRouted="false" />
+        <AssociationConnector Association="FilichevKursModel.FK__MilitaryE__Statu__440B1D61" ManuallyRouted="false" />
+        <AssociationConnector Association="FilichevKursModel.FK__MilitaryE__TypeI__4316F928" ManuallyRouted="false" />
+        <AssociationConnector Association="FilichevKursModel.FK__EventEqui__Equip__5AEE82B9" ManuallyRouted="false" />
+        <AssociationConnector Association="FilichevKursModel.FK__EventEqui__Event__59FA5E80" ManuallyRouted="false" />
+        <AssociationConnector Association="FilichevKursModel.FK__EventPart__Event__52593CB8" ManuallyRouted="false" />
+        <AssociationConnector Association="FilichevKursModel.FK__Events__EventTyp__4D94879B" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

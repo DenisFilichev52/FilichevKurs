@@ -1,0 +1,77 @@
+﻿<Window x:Class="FilichevKurs.View.Windowss.EventsListWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FilichevKurs.View.Windowss"
+        mc:Ignorable="d"
+        Title="EventsListWindow" Height="900" Width="1500">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Шапка -->
+        <Border Grid.Row="0" Background="#1A1A2E" Padding="24">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0" Orientation="Horizontal">
+                    <Border Width="48" Height="48" CornerRadius="24" 
+                           Background="#E94560" Margin="0,0,16,0">
+                        <TextBlock Text="&#127881;" FontSize="24" 
+                                  Foreground="White"
+                                  HorizontalAlignment="Center"
+                                  VerticalAlignment="Center"/>
+                    </Border>
+                    <StackPanel VerticalAlignment="Center">
+                        <TextBlock Text="МЕРОПРИЯТИЯ ПАРКА" 
+                                  FontSize="20" FontWeight="Bold" Foreground="White"/>
+                        <TextBlock Text="Аэрошоу, танковый биатлон и другие события" 
+                                  FontSize="12" Foreground="#9CA3AF"/>
+                    </StackPanel>
+                </StackPanel>
+
+                <Button Grid.Column="1" x:Name="btnCloseTop" Content="X" 
+                       Click="btnClose_Click"
+                       Background="Transparent" Foreground="White" 
+                       BorderThickness="0" FontSize="20" Width="40" Height="40"/>
+            </Grid>
+        </Border>
+
+        <!-- Панель фильтров -->
+        <Border Grid.Row="1" Background="White" BorderBrush="#E5E7EB" 
+               BorderThickness="0,0,0,1" Padding="20">
+            <StackPanel Orientation="Horizontal">
+                
+
+                <TextBlock Text="С:" VerticalAlignment="Center" Margin="20,0,8,0"/>
+                <DatePicker x:Name="dpDateFrom" Width="120"/>
+
+                <TextBlock Text="По:" VerticalAlignment="Center" Margin="20,0,8,0"/>
+                <DatePicker x:Name="dpDateTo" Width="120"/>
+
+               
+
+                <Button x:Name="btnReset" Content="Сбросить" Click="btnReset_Click"
+                       Background="#F3F4F6" Foreground="#374151" 
+                       Padding="16,8" Margin="10,0,0,0" FontWeight="SemiBold"/>
+
+                <Button x:Name="btnRegisterClient" Content="Регистрация клиента" Click="btnRegisterClient_Click"
+                       Background="#16A34A" Foreground="White" 
+                       Padding="16,8" Margin="10,0,0,0" FontWeight="SemiBold"/>
+            </StackPanel>
+        </Border>
+
+        <!-- Список мероприятий -->
+        <ScrollViewer Grid.Row="2" Margin="16">
+            <WrapPanel x:Name="wpEvents"/>
+        </ScrollViewer>
+
+    </Grid>
+</Window>

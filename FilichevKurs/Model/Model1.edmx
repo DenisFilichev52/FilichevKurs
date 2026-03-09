@@ -1,0 +1,805 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище FilichevKursModel" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Clients">
+          <Key>
+            <PropertyRef Name="ClientID" />
+          </Key>
+          <Property Name="ClientID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="MiddleName" Type="nvarchar" MaxLength="50" />
+          <Property Name="BirthDate" Type="date" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="20" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" />
+          <Property Name="PassportNumber" Type="nvarchar" MaxLength="20" />
+          <Property Name="RegistrationDate" Type="date" />
+          <Property Name="IsRegular" Type="bit" />
+          <Property Name="DiscountPercent" Type="decimal" Precision="5" Scale="2" />
+        </EntityType>
+        <EntityType Name="Employees">
+          <Key>
+            <PropertyRef Name="EmployeeID" />
+          </Key>
+          <Property Name="EmployeeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="MiddleName" Type="nvarchar" MaxLength="50" />
+          <Property Name="BirthDate" Type="date" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="20" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" />
+          <Property Name="PositionID" Type="int" />
+          <Property Name="HireDate" Type="date" Nullable="false" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="EquipmentStatus">
+          <Key>
+            <PropertyRef Name="StatusID" />
+          </Key>
+          <Property Name="StatusID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StatusName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="EquipmentTypes">
+          <Key>
+            <PropertyRef Name="TypeID" />
+          </Key>
+          <Property Name="TypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TypeCode" Type="nvarchar" MaxLength="16" Nullable="false" />
+          <Property Name="TypeName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="EventEquipment">
+          <Key>
+            <PropertyRef Name="EventEquipmentID" />
+          </Key>
+          <Property Name="EventEquipmentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EventID" Type="int" />
+          <Property Name="EquipmentID" Type="int" />
+          <Property Name="RoleInEvent" Type="nvarchar" MaxLength="200" />
+          <Property Name="IsMainAttraction" Type="bit" />
+        </EntityType>
+        <EntityType Name="EventParticipations">
+          <Key>
+            <PropertyRef Name="ParticipationID" />
+          </Key>
+          <Property Name="ParticipationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EventID" Type="int" />
+          <Property Name="ClientID" Type="int" />
+          <Property Name="RegistrationDate" Type="datetime2" Precision="7" />
+          <Property Name="IsPaid" Type="bit" />
+          <Property Name="PaymentAmount" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="Attended" Type="bit" />
+          <Property Name="Feedback" Type="nvarchar" MaxLength="1000" />
+          <Property Name="Rating" Type="int" />
+        </EntityType>
+        <EntityType Name="Events">
+          <Key>
+            <PropertyRef Name="EventID" />
+          </Key>
+          <Property Name="EventID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EventName" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="EventTypeID" Type="int" />
+          <Property Name="EventDate" Type="date" Nullable="false" />
+          <Property Name="StartTime" Type="time" Precision="7" />
+          <Property Name="EndTime" Type="time" Precision="7" />
+          <Property Name="Location" Type="nvarchar" MaxLength="200" />
+          <Property Name="Description" Type="nvarchar" MaxLength="1000" />
+          <Property Name="MaxParticipants" Type="int" />
+          <Property Name="Price" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="ResponsibleEmployeeID" Type="int" />
+        </EntityType>
+        <EntityType Name="EventTypes">
+          <Key>
+            <PropertyRef Name="EventTypeID" />
+          </Key>
+          <Property Name="EventTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TypeName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="MilitaryEquipment">
+          <Key>
+            <PropertyRef Name="EquipmentID" />
+          </Key>
+          <Property Name="EquipmentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="InventoryNumber" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="TypeID" Type="int" Nullable="false" />
+          <Property Name="Manufacturer" Type="nvarchar" MaxLength="100" />
+          <Property Name="ProductionYear" Type="int" />
+          <Property Name="Weight" Type="decimal" Precision="8" Scale="2" />
+          <Property Name="Length" Type="decimal" Precision="6" Scale="2" />
+          <Property Name="Width" Type="decimal" Precision="6" Scale="2" />
+          <Property Name="Height" Type="decimal" Precision="6" Scale="2" />
+          <Property Name="Crew" Type="int" />
+          <Property Name="MaxSpeed" Type="int" />
+          <Property Name="EnginePower" Type="int" />
+          <Property Name="ArmorType" Type="nvarchar" MaxLength="100" />
+          <Property Name="Armament" Type="nvarchar" MaxLength="500" />
+          <Property Name="Description" Type="nvarchar" MaxLength="1000" />
+          <Property Name="StatusID" Type="int" />
+          <Property Name="ArrivalDate" Type="date" />
+          <Property Name="RestorationDate" Type="date" />
+        </EntityType>
+        <EntityType Name="Positions">
+          <Key>
+            <PropertyRef Name="PositionID" />
+          </Key>
+          <Property Name="PositionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PositionName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Department" Type="nvarchar" MaxLength="100" />
+          <Property Name="Salary" Type="decimal" Precision="10" Scale="2" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <Association Name="FK__Employees__Posit__3E52440B">
+          <End Role="Positions" Type="Self.Positions" Multiplicity="0..1" />
+          <End Role="Employees" Type="Self.Employees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Positions">
+              <PropertyRef Name="PositionID" />
+            </Principal>
+            <Dependent Role="Employees">
+              <PropertyRef Name="PositionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__EventEqui__Equip__5AEE82B9">
+          <End Role="MilitaryEquipment" Type="Self.MilitaryEquipment" Multiplicity="0..1" />
+          <End Role="EventEquipment" Type="Self.EventEquipment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MilitaryEquipment">
+              <PropertyRef Name="EquipmentID" />
+            </Principal>
+            <Dependent Role="EventEquipment">
+              <PropertyRef Name="EquipmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__EventEqui__Event__59FA5E80">
+          <End Role="Events" Type="Self.Events" Multiplicity="0..1" />
+          <End Role="EventEquipment" Type="Self.EventEquipment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Events">
+              <PropertyRef Name="EventID" />
+            </Principal>
+            <Dependent Role="EventEquipment">
+              <PropertyRef Name="EventID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__EventPart__Clien__534D60F1">
+          <End Role="Clients" Type="Self.Clients" Multiplicity="0..1" />
+          <End Role="EventParticipations" Type="Self.EventParticipations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clients">
+              <PropertyRef Name="ClientID" />
+            </Principal>
+            <Dependent Role="EventParticipations">
+              <PropertyRef Name="ClientID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__EventPart__Event__52593CB8">
+          <End Role="Events" Type="Self.Events" Multiplicity="0..1" />
+          <End Role="EventParticipations" Type="Self.EventParticipations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Events">
+              <PropertyRef Name="EventID" />
+            </Principal>
+            <Dependent Role="EventParticipations">
+              <PropertyRef Name="EventID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Events__EventTyp__4D94879B">
+          <End Role="EventTypes" Type="Self.EventTypes" Multiplicity="0..1" />
+          <End Role="Events" Type="Self.Events" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EventTypes">
+              <PropertyRef Name="EventTypeID" />
+            </Principal>
+            <Dependent Role="Events">
+              <PropertyRef Name="EventTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Events__Responsi__4F7CD00D">
+          <End Role="Employees" Type="Self.Employees" Multiplicity="0..1" />
+          <End Role="Events" Type="Self.Events" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="EmployeeID" />
+            </Principal>
+            <Dependent Role="Events">
+              <PropertyRef Name="ResponsibleEmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MilitaryE__Statu__440B1D61">
+          <End Role="EquipmentStatus" Type="Self.EquipmentStatus" Multiplicity="0..1" />
+          <End Role="MilitaryEquipment" Type="Self.MilitaryEquipment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EquipmentStatus">
+              <PropertyRef Name="StatusID" />
+            </Principal>
+            <Dependent Role="MilitaryEquipment">
+              <PropertyRef Name="StatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MilitaryE__TypeI__4316F928">
+          <End Role="EquipmentTypes" Type="Self.EquipmentTypes" Multiplicity="1" />
+          <End Role="MilitaryEquipment" Type="Self.MilitaryEquipment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EquipmentTypes">
+              <PropertyRef Name="TypeID" />
+            </Principal>
+            <Dependent Role="MilitaryEquipment">
+              <PropertyRef Name="TypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище FilichevKursModelContainer">
+          <EntitySet Name="Clients" EntityType="Self.Clients" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employees" EntityType="Self.Employees" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EquipmentStatus" EntityType="Self.EquipmentStatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EquipmentTypes" EntityType="Self.EquipmentTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EventEquipment" EntityType="Self.EventEquipment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EventParticipations" EntityType="Self.EventParticipations" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Events" EntityType="Self.Events" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EventTypes" EntityType="Self.EventTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MilitaryEquipment" EntityType="Self.MilitaryEquipment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Positions" EntityType="Self.Positions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Employees__Posit__3E52440B" Association="Self.FK__Employees__Posit__3E52440B">
+            <End Role="Positions" EntitySet="Positions" />
+            <End Role="Employees" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK__EventEqui__Equip__5AEE82B9" Association="Self.FK__EventEqui__Equip__5AEE82B9">
+            <End Role="MilitaryEquipment" EntitySet="MilitaryEquipment" />
+            <End Role="EventEquipment" EntitySet="EventEquipment" />
+          </AssociationSet>
+          <AssociationSet Name="FK__EventEqui__Event__59FA5E80" Association="Self.FK__EventEqui__Event__59FA5E80">
+            <End Role="Events" EntitySet="Events" />
+            <End Role="EventEquipment" EntitySet="EventEquipment" />
+          </AssociationSet>
+          <AssociationSet Name="FK__EventPart__Clien__534D60F1" Association="Self.FK__EventPart__Clien__534D60F1">
+            <End Role="Clients" EntitySet="Clients" />
+            <End Role="EventParticipations" EntitySet="EventParticipations" />
+          </AssociationSet>
+          <AssociationSet Name="FK__EventPart__Event__52593CB8" Association="Self.FK__EventPart__Event__52593CB8">
+            <End Role="Events" EntitySet="Events" />
+            <End Role="EventParticipations" EntitySet="EventParticipations" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Events__EventTyp__4D94879B" Association="Self.FK__Events__EventTyp__4D94879B">
+            <End Role="EventTypes" EntitySet="EventTypes" />
+            <End Role="Events" EntitySet="Events" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Events__Responsi__4F7CD00D" Association="Self.FK__Events__Responsi__4F7CD00D">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="Events" EntitySet="Events" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MilitaryE__Statu__440B1D61" Association="Self.FK__MilitaryE__Statu__440B1D61">
+            <End Role="EquipmentStatus" EntitySet="EquipmentStatus" />
+            <End Role="MilitaryEquipment" EntitySet="MilitaryEquipment" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MilitaryE__TypeI__4316F928" Association="Self.FK__MilitaryE__TypeI__4316F928">
+            <End Role="EquipmentTypes" EntitySet="EquipmentTypes" />
+            <End Role="MilitaryEquipment" EntitySet="MilitaryEquipment" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="FilichevKursModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Clients">
+          <Key>
+            <PropertyRef Name="ClientID" />
+          </Key>
+          <Property Name="ClientID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MiddleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BirthDate" Type="DateTime" Precision="0" />
+          <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PassportNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="RegistrationDate" Type="DateTime" Precision="0" />
+          <Property Name="IsRegular" Type="Boolean" />
+          <Property Name="DiscountPercent" Type="Decimal" Precision="5" Scale="2" />
+          <NavigationProperty Name="EventParticipations" Relationship="Self.FK__EventPart__Clien__534D60F1" FromRole="Clients" ToRole="EventParticipations" />
+        </EntityType>
+        <EntityType Name="Employees">
+          <Key>
+            <PropertyRef Name="EmployeeID" />
+          </Key>
+          <Property Name="EmployeeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MiddleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BirthDate" Type="DateTime" Precision="0" />
+          <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PositionID" Type="Int32" />
+          <Property Name="HireDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IsActive" Type="Boolean" />
+          <NavigationProperty Name="Positions" Relationship="Self.FK__Employees__Posit__3E52440B" FromRole="Employees" ToRole="Positions" />
+          <NavigationProperty Name="Events" Relationship="Self.FK__Events__Responsi__4F7CD00D" FromRole="Employees" ToRole="Events" />
+        </EntityType>
+        <EntityType Name="EquipmentStatus">
+          <Key>
+            <PropertyRef Name="StatusID" />
+          </Key>
+          <Property Name="StatusID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StatusName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="MilitaryEquipment" Relationship="Self.FK__MilitaryE__Statu__440B1D61" FromRole="EquipmentStatus" ToRole="MilitaryEquipment" />
+        </EntityType>
+        <EntityType Name="EquipmentTypes">
+          <Key>
+            <PropertyRef Name="TypeID" />
+          </Key>
+          <Property Name="TypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TypeCode" Type="String" MaxLength="16" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="MilitaryEquipment" Relationship="Self.FK__MilitaryE__TypeI__4316F928" FromRole="EquipmentTypes" ToRole="MilitaryEquipment" />
+        </EntityType>
+        <EntityType Name="EventEquipment">
+          <Key>
+            <PropertyRef Name="EventEquipmentID" />
+          </Key>
+          <Property Name="EventEquipmentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EventID" Type="Int32" />
+          <Property Name="EquipmentID" Type="Int32" />
+          <Property Name="RoleInEvent" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="IsMainAttraction" Type="Boolean" />
+          <NavigationProperty Name="MilitaryEquipment" Relationship="Self.FK__EventEqui__Equip__5AEE82B9" FromRole="EventEquipment" ToRole="MilitaryEquipment" />
+          <NavigationProperty Name="Events" Relationship="Self.FK__EventEqui__Event__59FA5E80" FromRole="EventEquipment" ToRole="Events" />
+        </EntityType>
+        <EntityType Name="EventParticipations">
+          <Key>
+            <PropertyRef Name="ParticipationID" />
+          </Key>
+          <Property Name="ParticipationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EventID" Type="Int32" />
+          <Property Name="ClientID" Type="Int32" />
+          <Property Name="RegistrationDate" Type="DateTime" Precision="7" />
+          <Property Name="IsPaid" Type="Boolean" />
+          <Property Name="PaymentAmount" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="Attended" Type="Boolean" />
+          <Property Name="Feedback" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="Rating" Type="Int32" />
+          <NavigationProperty Name="Clients" Relationship="Self.FK__EventPart__Clien__534D60F1" FromRole="EventParticipations" ToRole="Clients" />
+          <NavigationProperty Name="Events" Relationship="Self.FK__EventPart__Event__52593CB8" FromRole="EventParticipations" ToRole="Events" />
+        </EntityType>
+        <EntityType Name="Events">
+          <Key>
+            <PropertyRef Name="EventID" />
+          </Key>
+          <Property Name="EventID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EventName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EventTypeID" Type="Int32" />
+          <Property Name="EventDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="StartTime" Type="Time" Precision="7" />
+          <Property Name="EndTime" Type="Time" Precision="7" />
+          <Property Name="Location" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="MaxParticipants" Type="Int32" />
+          <Property Name="Price" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="ResponsibleEmployeeID" Type="Int32" />
+          <NavigationProperty Name="Employees" Relationship="Self.FK__Events__Responsi__4F7CD00D" FromRole="Events" ToRole="Employees" />
+          <NavigationProperty Name="EventEquipment" Relationship="Self.FK__EventEqui__Event__59FA5E80" FromRole="Events" ToRole="EventEquipment" />
+          <NavigationProperty Name="EventParticipations" Relationship="Self.FK__EventPart__Event__52593CB8" FromRole="Events" ToRole="EventParticipations" />
+          <NavigationProperty Name="EventTypes" Relationship="Self.FK__Events__EventTyp__4D94879B" FromRole="Events" ToRole="EventTypes" />
+        </EntityType>
+        <EntityType Name="EventTypes">
+          <Key>
+            <PropertyRef Name="EventTypeID" />
+          </Key>
+          <Property Name="EventTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TypeName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Events" Relationship="Self.FK__Events__EventTyp__4D94879B" FromRole="EventTypes" ToRole="Events" />
+        </EntityType>
+        <EntityType Name="MilitaryEquipment">
+          <Key>
+            <PropertyRef Name="EquipmentID" />
+          </Key>
+          <Property Name="EquipmentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="InventoryNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TypeID" Type="Int32" Nullable="false" />
+          <Property Name="Manufacturer" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ProductionYear" Type="Int32" />
+          <Property Name="Weight" Type="Decimal" Precision="8" Scale="2" />
+          <Property Name="Length" Type="Decimal" Precision="6" Scale="2" />
+          <Property Name="Width" Type="Decimal" Precision="6" Scale="2" />
+          <Property Name="Height" Type="Decimal" Precision="6" Scale="2" />
+          <Property Name="Crew" Type="Int32" />
+          <Property Name="MaxSpeed" Type="Int32" />
+          <Property Name="EnginePower" Type="Int32" />
+          <Property Name="ArmorType" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Armament" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="StatusID" Type="Int32" />
+          <Property Name="ArrivalDate" Type="DateTime" Precision="0" />
+          <Property Name="RestorationDate" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="EquipmentStatus" Relationship="Self.FK__MilitaryE__Statu__440B1D61" FromRole="MilitaryEquipment" ToRole="EquipmentStatus" />
+          <NavigationProperty Name="EquipmentTypes" Relationship="Self.FK__MilitaryE__TypeI__4316F928" FromRole="MilitaryEquipment" ToRole="EquipmentTypes" />
+          <NavigationProperty Name="EventEquipment" Relationship="Self.FK__EventEqui__Equip__5AEE82B9" FromRole="MilitaryEquipment" ToRole="EventEquipment" />
+        </EntityType>
+        <EntityType Name="Positions">
+          <Key>
+            <PropertyRef Name="PositionID" />
+          </Key>
+          <Property Name="PositionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PositionName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Department" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Salary" Type="Decimal" Precision="10" Scale="2" />
+          <NavigationProperty Name="Employees" Relationship="Self.FK__Employees__Posit__3E52440B" FromRole="Positions" ToRole="Employees" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK__EventPart__Clien__534D60F1">
+          <End Role="Clients" Type="Self.Clients" Multiplicity="0..1" />
+          <End Role="EventParticipations" Type="Self.EventParticipations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clients">
+              <PropertyRef Name="ClientID" />
+            </Principal>
+            <Dependent Role="EventParticipations">
+              <PropertyRef Name="ClientID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Employees__Posit__3E52440B">
+          <End Role="Positions" Type="Self.Positions" Multiplicity="0..1" />
+          <End Role="Employees" Type="Self.Employees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Positions">
+              <PropertyRef Name="PositionID" />
+            </Principal>
+            <Dependent Role="Employees">
+              <PropertyRef Name="PositionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Events__Responsi__4F7CD00D">
+          <End Role="Employees" Type="Self.Employees" Multiplicity="0..1" />
+          <End Role="Events" Type="Self.Events" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="EmployeeID" />
+            </Principal>
+            <Dependent Role="Events">
+              <PropertyRef Name="ResponsibleEmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MilitaryE__Statu__440B1D61">
+          <End Role="EquipmentStatus" Type="Self.EquipmentStatus" Multiplicity="0..1" />
+          <End Role="MilitaryEquipment" Type="Self.MilitaryEquipment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EquipmentStatus">
+              <PropertyRef Name="StatusID" />
+            </Principal>
+            <Dependent Role="MilitaryEquipment">
+              <PropertyRef Name="StatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MilitaryE__TypeI__4316F928">
+          <End Role="EquipmentTypes" Type="Self.EquipmentTypes" Multiplicity="1" />
+          <End Role="MilitaryEquipment" Type="Self.MilitaryEquipment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EquipmentTypes">
+              <PropertyRef Name="TypeID" />
+            </Principal>
+            <Dependent Role="MilitaryEquipment">
+              <PropertyRef Name="TypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__EventEqui__Equip__5AEE82B9">
+          <End Role="MilitaryEquipment" Type="Self.MilitaryEquipment" Multiplicity="0..1" />
+          <End Role="EventEquipment" Type="Self.EventEquipment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MilitaryEquipment">
+              <PropertyRef Name="EquipmentID" />
+            </Principal>
+            <Dependent Role="EventEquipment">
+              <PropertyRef Name="EquipmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__EventEqui__Event__59FA5E80">
+          <End Role="Events" Type="Self.Events" Multiplicity="0..1" />
+          <End Role="EventEquipment" Type="Self.EventEquipment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Events">
+              <PropertyRef Name="EventID" />
+            </Principal>
+            <Dependent Role="EventEquipment">
+              <PropertyRef Name="EventID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__EventPart__Event__52593CB8">
+          <End Role="Events" Type="Self.Events" Multiplicity="0..1" />
+          <End Role="EventParticipations" Type="Self.EventParticipations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Events">
+              <PropertyRef Name="EventID" />
+            </Principal>
+            <Dependent Role="EventParticipations">
+              <PropertyRef Name="EventID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Events__EventTyp__4D94879B">
+          <End Role="EventTypes" Type="Self.EventTypes" Multiplicity="0..1" />
+          <End Role="Events" Type="Self.Events" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EventTypes">
+              <PropertyRef Name="EventTypeID" />
+            </Principal>
+            <Dependent Role="Events">
+              <PropertyRef Name="EventTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="FilichevKursEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Clients" EntityType="Self.Clients" />
+          <EntitySet Name="Employees" EntityType="Self.Employees" />
+          <EntitySet Name="EquipmentStatus" EntityType="Self.EquipmentStatus" />
+          <EntitySet Name="EquipmentTypes" EntityType="Self.EquipmentTypes" />
+          <EntitySet Name="EventEquipment" EntityType="Self.EventEquipment" />
+          <EntitySet Name="EventParticipations" EntityType="Self.EventParticipations" />
+          <EntitySet Name="Events" EntityType="Self.Events" />
+          <EntitySet Name="EventTypes" EntityType="Self.EventTypes" />
+          <EntitySet Name="MilitaryEquipment" EntityType="Self.MilitaryEquipment" />
+          <EntitySet Name="Positions" EntityType="Self.Positions" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <AssociationSet Name="FK__EventPart__Clien__534D60F1" Association="Self.FK__EventPart__Clien__534D60F1">
+            <End Role="Clients" EntitySet="Clients" />
+            <End Role="EventParticipations" EntitySet="EventParticipations" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Employees__Posit__3E52440B" Association="Self.FK__Employees__Posit__3E52440B">
+            <End Role="Positions" EntitySet="Positions" />
+            <End Role="Employees" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Events__Responsi__4F7CD00D" Association="Self.FK__Events__Responsi__4F7CD00D">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="Events" EntitySet="Events" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MilitaryE__Statu__440B1D61" Association="Self.FK__MilitaryE__Statu__440B1D61">
+            <End Role="EquipmentStatus" EntitySet="EquipmentStatus" />
+            <End Role="MilitaryEquipment" EntitySet="MilitaryEquipment" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MilitaryE__TypeI__4316F928" Association="Self.FK__MilitaryE__TypeI__4316F928">
+            <End Role="EquipmentTypes" EntitySet="EquipmentTypes" />
+            <End Role="MilitaryEquipment" EntitySet="MilitaryEquipment" />
+          </AssociationSet>
+          <AssociationSet Name="FK__EventEqui__Equip__5AEE82B9" Association="Self.FK__EventEqui__Equip__5AEE82B9">
+            <End Role="MilitaryEquipment" EntitySet="MilitaryEquipment" />
+            <End Role="EventEquipment" EntitySet="EventEquipment" />
+          </AssociationSet>
+          <AssociationSet Name="FK__EventEqui__Event__59FA5E80" Association="Self.FK__EventEqui__Event__59FA5E80">
+            <End Role="Events" EntitySet="Events" />
+            <End Role="EventEquipment" EntitySet="EventEquipment" />
+          </AssociationSet>
+          <AssociationSet Name="FK__EventPart__Event__52593CB8" Association="Self.FK__EventPart__Event__52593CB8">
+            <End Role="Events" EntitySet="Events" />
+            <End Role="EventParticipations" EntitySet="EventParticipations" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Events__EventTyp__4D94879B" Association="Self.FK__Events__EventTyp__4D94879B">
+            <End Role="EventTypes" EntitySet="EventTypes" />
+            <End Role="Events" EntitySet="Events" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище FilichevKursModelContainer" CdmEntityContainer="FilichevKursEntities">
+          <EntitySetMapping Name="Clients">
+            <EntityTypeMapping TypeName="FilichevKursModel.Clients">
+              <MappingFragment StoreEntitySet="Clients">
+                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="PassportNumber" ColumnName="PassportNumber" />
+                <ScalarProperty Name="RegistrationDate" ColumnName="RegistrationDate" />
+                <ScalarProperty Name="IsRegular" ColumnName="IsRegular" />
+                <ScalarProperty Name="DiscountPercent" ColumnName="DiscountPercent" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employees">
+            <EntityTypeMapping TypeName="FilichevKursModel.Employees">
+              <MappingFragment StoreEntitySet="Employees">
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="PositionID" ColumnName="PositionID" />
+                <ScalarProperty Name="HireDate" ColumnName="HireDate" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EquipmentStatus">
+            <EntityTypeMapping TypeName="FilichevKursModel.EquipmentStatus">
+              <MappingFragment StoreEntitySet="EquipmentStatus">
+                <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+                <ScalarProperty Name="StatusName" ColumnName="StatusName" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EquipmentTypes">
+            <EntityTypeMapping TypeName="FilichevKursModel.EquipmentTypes">
+              <MappingFragment StoreEntitySet="EquipmentTypes">
+                <ScalarProperty Name="TypeID" ColumnName="TypeID" />
+                <ScalarProperty Name="TypeCode" ColumnName="TypeCode" />
+                <ScalarProperty Name="TypeName" ColumnName="TypeName" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EventEquipment">
+            <EntityTypeMapping TypeName="FilichevKursModel.EventEquipment">
+              <MappingFragment StoreEntitySet="EventEquipment">
+                <ScalarProperty Name="EventEquipmentID" ColumnName="EventEquipmentID" />
+                <ScalarProperty Name="EventID" ColumnName="EventID" />
+                <ScalarProperty Name="EquipmentID" ColumnName="EquipmentID" />
+                <ScalarProperty Name="RoleInEvent" ColumnName="RoleInEvent" />
+                <ScalarProperty Name="IsMainAttraction" ColumnName="IsMainAttraction" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EventParticipations">
+            <EntityTypeMapping TypeName="FilichevKursModel.EventParticipations">
+              <MappingFragment StoreEntitySet="EventParticipations">
+                <ScalarProperty Name="ParticipationID" ColumnName="ParticipationID" />
+                <ScalarProperty Name="EventID" ColumnName="EventID" />
+                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+                <ScalarProperty Name="RegistrationDate" ColumnName="RegistrationDate" />
+                <ScalarProperty Name="IsPaid" ColumnName="IsPaid" />
+                <ScalarProperty Name="PaymentAmount" ColumnName="PaymentAmount" />
+                <ScalarProperty Name="Attended" ColumnName="Attended" />
+                <ScalarProperty Name="Feedback" ColumnName="Feedback" />
+                <ScalarProperty Name="Rating" ColumnName="Rating" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Events">
+            <EntityTypeMapping TypeName="FilichevKursModel.Events">
+              <MappingFragment StoreEntitySet="Events">
+                <ScalarProperty Name="EventID" ColumnName="EventID" />
+                <ScalarProperty Name="EventName" ColumnName="EventName" />
+                <ScalarProperty Name="EventTypeID" ColumnName="EventTypeID" />
+                <ScalarProperty Name="EventDate" ColumnName="EventDate" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="MaxParticipants" ColumnName="MaxParticipants" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="ResponsibleEmployeeID" ColumnName="ResponsibleEmployeeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EventTypes">
+            <EntityTypeMapping TypeName="FilichevKursModel.EventTypes">
+              <MappingFragment StoreEntitySet="EventTypes">
+                <ScalarProperty Name="EventTypeID" ColumnName="EventTypeID" />
+                <ScalarProperty Name="TypeName" ColumnName="TypeName" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MilitaryEquipment">
+            <EntityTypeMapping TypeName="FilichevKursModel.MilitaryEquipment">
+              <MappingFragment StoreEntitySet="MilitaryEquipment">
+                <ScalarProperty Name="EquipmentID" ColumnName="EquipmentID" />
+                <ScalarProperty Name="InventoryNumber" ColumnName="InventoryNumber" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="TypeID" ColumnName="TypeID" />
+                <ScalarProperty Name="Manufacturer" ColumnName="Manufacturer" />
+                <ScalarProperty Name="ProductionYear" ColumnName="ProductionYear" />
+                <ScalarProperty Name="Weight" ColumnName="Weight" />
+                <ScalarProperty Name="Length" ColumnName="Length" />
+                <ScalarProperty Name="Width" ColumnName="Width" />
+                <ScalarProperty Name="Height" ColumnName="Height" />
+                <ScalarProperty Name="Crew" ColumnName="Crew" />
+                <ScalarProperty Name="MaxSpeed" ColumnName="MaxSpeed" />
+                <ScalarProperty Name="EnginePower" ColumnName="EnginePower" />
+                <ScalarProperty Name="ArmorType" ColumnName="ArmorType" />
+                <ScalarProperty Name="Armament" ColumnName="Armament" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+                <ScalarProperty Name="ArrivalDate" ColumnName="ArrivalDate" />
+                <ScalarProperty Name="RestorationDate" ColumnName="RestorationDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Positions">
+            <EntityTypeMapping TypeName="FilichevKursModel.Positions">
+              <MappingFragment StoreEntitySet="Positions">
+                <ScalarProperty Name="PositionID" ColumnName="PositionID" />
+                <ScalarProperty Name="PositionName" ColumnName="PositionName" />
+                <ScalarProperty Name="Department" ColumnName="Department" />
+                <ScalarProperty Name="Salary" ColumnName="Salary" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="FilichevKursModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

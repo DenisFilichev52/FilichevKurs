@@ -1,0 +1,287 @@
+﻿<Window x:Class="FilichevKurs.View.Windowss.EventParticipantsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FilichevKurs.View.Windowss"
+        mc:Ignorable="d"
+        Title="EventParticipantsWindow" Height="900" Width="1500">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Шапка -->
+        <Border Grid.Row="0" Background="#1A1A2E" Padding="24">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0">
+                    <TextBlock x:Name="txtEventName" 
+                              FontSize="22" 
+                              FontWeight="Bold" 
+                              Foreground="White"/>
+                    <TextBlock x:Name="txtEventInfo" 
+                              FontSize="13" 
+                              Foreground="#9CA3AF"
+                              Margin="0,6,0,0"/>
+                </StackPanel>
+
+                <Button Grid.Column="1" Content="&#10005;" 
+                       Click="btnClose_Click"
+                       Background="Transparent" Foreground="White" 
+                       BorderThickness="0" FontSize="18" Width="40" Height="40"
+                       Cursor="Hand"/>
+            </Grid>
+        </Border>
+
+        <!-- Статистика -->
+        <Border Grid.Row="1" Background="White" BorderBrush="#E5E7EB" 
+               BorderThickness="0,0,0,1" Padding="20">
+            <StackPanel Orientation="Horizontal">
+                <Border Background="#F0F7FF" CornerRadius="12" Padding="20,16" Margin="0,0,12,0">
+                    <StackPanel>
+                        <TextBlock x:Name="txtTotalCount" 
+                                  FontSize="28" 
+                                  FontWeight="Bold" 
+                                  Foreground="#0F3460"/>
+                        <TextBlock Text="Всего записалось" 
+                                  FontSize="12" 
+                                  Foreground="#5F6368"
+                                  Margin="0,4,0,0"/>
+                    </StackPanel>
+                </Border>
+
+                <Border Background="#F0FDF4" CornerRadius="12" Padding="20,16" Margin="0,0,12,0">
+                    <StackPanel>
+                        <TextBlock x:Name="txtAttendedCount" 
+                                  FontSize="28" 
+                                  FontWeight="Bold" 
+                                  Foreground="#16A34A"/>
+                        <TextBlock Text="Присутствовало" 
+                                  FontSize="12" 
+                                  Foreground="#5F6368"
+                                  Margin="0,4,0,0"/>
+                    </StackPanel>
+                </Border>
+
+                <Border Background="#FFFBF0" CornerRadius="12" Padding="20,16" Margin="0,0,12,0">
+                    <StackPanel>
+                        <TextBlock x:Name="txtPaidCount" 
+                                  FontSize="28" 
+                                  FontWeight="Bold" 
+                                  Foreground="#F59E0B"/>
+                        <TextBlock Text="Оплатило" 
+                                  FontSize="12" 
+                                  Foreground="#5F6368"
+                                  Margin="0,4,0,0"/>
+                    </StackPanel>
+                </Border>
+
+                <Border Background="#F5F3FF" CornerRadius="12" Padding="20,16">
+                    <StackPanel>
+                        <TextBlock x:Name="txtDebtCount" 
+                                  FontSize="28" 
+                                  FontWeight="Bold" 
+                                  Foreground="#8B5CF6"/>
+                        <TextBlock Text="Должников" 
+                                  FontSize="12" 
+                                  Foreground="#5F6368"
+                                  Margin="0,4,0,0"/>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <!-- Список участников -->
+        <Border Grid.Row="2" Background="White" Margin="20" CornerRadius="12">
+            <Border.Effect>
+                <DropShadowEffect ShadowDepth="2" BlurRadius="8" Opacity="0.08"/>
+            </Border.Effect>
+
+            <DataGrid x:Name="dgParticipants" 
+                     AutoGenerateColumns="False" 
+                     IsReadOnly="True"
+                     GridLinesVisibility="None"
+                     BorderThickness="0"
+                     RowBackground="White"
+                     AlternatingRowBackground="#F9FAFB"
+                     HeadersVisibility="Column">
+
+                <DataGrid.Resources>
+                    <Style TargetType="DataGridColumnHeader">
+                        <Setter Property="Background" Value="#F1F3F4"/>
+                        <Setter Property="Foreground" Value="#1A1A2E"/>
+                        <Setter Property="FontWeight" Value="SemiBold"/>
+                        <Setter Property="Padding" Value="16,12"/>
+                        <Setter Property="BorderThickness" Value="0"/>
+                    </Style>
+                    <Style TargetType="DataGridRow">
+                        <Setter Property="Height" Value="56"/>
+                    </Style>
+                </DataGrid.Resources>
+
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="№" Binding="{Binding RowNumber}" Width="60">
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="VerticalAlignment" Value="Center"/>
+                                <Setter Property="Margin" Value="16,0"/>
+                                <Setter Property="Foreground" Value="#9CA3AF"/>
+                                <Setter Property="FontWeight" Value="SemiBold"/>
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+
+                    <DataGridTextColumn Header="ФИО участника" Binding="{Binding FullName}" Width="*">
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="VerticalAlignment" Value="Center"/>
+                                <Setter Property="Margin" Value="16,0"/>
+                                <Setter Property="FontWeight" Value="SemiBold"/>
+                                <Setter Property="Foreground" Value="#1A1A2E"/>
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+
+                    <DataGridTextColumn Header="Телефон" Binding="{Binding Phone}" Width="140">
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="VerticalAlignment" Value="Center"/>
+                                <Setter Property="Margin" Value="16,0"/>
+                                <Setter Property="Foreground" Value="#6B7280"/>
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+
+                    <DataGridTextColumn Header="Дата регистрации" Binding="{Binding RegistrationDateString}" Width="130">
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="VerticalAlignment" Value="Center"/>
+                                <Setter Property="Margin" Value="16,0"/>
+                                <Setter Property="Foreground" Value="#6B7280"/>
+                                <Setter Property="FontSize" Value="12"/>
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+
+                    <DataGridTextColumn Header="Присутствие" Binding="{Binding AttendanceText}" Width="110">
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="VerticalAlignment" Value="Center"/>
+                                <Setter Property="HorizontalAlignment" Value="Center"/>
+                                <Setter Property="Padding" Value="8,4"/>
+                                <Setter Property="FontSize" Value="11"/>
+                                <Setter Property="FontWeight" Value="SemiBold"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding IsAttended}" Value="True">
+                                        <Setter Property="Foreground" Value="#16A34A"/>
+                                        <Setter Property="Background" Value="#F0FDF4"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding IsAttended}" Value="False">
+                                        <Setter Property="Foreground" Value="#9CA3AF"/>
+                                        <Setter Property="Background" Value="#F3F4F6"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+
+                    <DataGridTextColumn Header="Оплата" Binding="{Binding PaymentText}" Width="90">
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="VerticalAlignment" Value="Center"/>
+                                <Setter Property="HorizontalAlignment" Value="Center"/>
+                                <Setter Property="Padding" Value="8,4"/>
+                                <Setter Property="FontSize" Value="11"/>
+                                <Setter Property="FontWeight" Value="SemiBold"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding IsPaid}" Value="True">
+                                        <Setter Property="Foreground" Value="#16A34A"/>
+                                        <Setter Property="Background" Value="#F0FDF4"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding IsPaid}" Value="False">
+                                        <Setter Property="Foreground" Value="#DC2626"/>
+                                        <Setter Property="Background" Value="#FEF2F2"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Border>
+
+        <!-- Кнопки -->
+        <StackPanel Grid.Row="3" Orientation="Horizontal" 
+                   HorizontalAlignment="Right" Margin="20,0,20,20">
+
+            <Button x:Name="btnExport" Content="&#128190; Экспорт" 
+                   Click="btnExport_Click"
+                   Background="#F3F4F6" Foreground="#374151" 
+                   Padding="16,12" Margin="0,0,10,0" FontWeight="SemiBold"
+                   BorderThickness="0" Cursor="Hand">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                               CornerRadius="8" Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#E5E7EB"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+
+            <Button x:Name="btnAddRandom" Content="&#127922; Случайные" 
+                   Click="btnAddRandom_Click"
+                   Background="#0F3460" Foreground="White" 
+                   Padding="16,12" Margin="0,0,10,0" FontWeight="SemiBold"
+                   BorderThickness="0" Cursor="Hand">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                               CornerRadius="8" Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#1a4a7a"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+
+            <Button Content="&#10005; Закрыть" Click="btnClose_Click"
+                   Background="#E94560" Foreground="White" 
+                   Padding="16,12" FontWeight="SemiBold"
+                   BorderThickness="0" Cursor="Hand">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                               CornerRadius="8" Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#D63D56"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+        </StackPanel>
+
+    </Grid>
+</Window>
+
