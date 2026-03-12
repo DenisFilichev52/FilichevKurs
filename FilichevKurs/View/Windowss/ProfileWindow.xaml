@@ -7,6 +7,65 @@
         mc:Ignorable="d"
         Title="ProfileWindow" Height="450" Width="800">
     <Grid>
+         
+        <Border Background="#1A237E" Height="50" VerticalAlignment="Top">
+            <TextBlock Text="ПАРК ТЕХНИКИ ВС РФ" 
+                       Foreground="White" 
+                       FontWeight="Bold"
+                       VerticalAlignment="Center"
+                       Margin="15,0"/>
+        </Border>
+
         
+        <StackPanel Margin="20,70,20,20">
+
+            <TextBlock Text="Мой профиль" 
+                       FontSize="20" 
+                       FontWeight="Bold"
+                       Margin="0,0,0,20"/>
+
+             <!--Карточка сотрудника--> 
+            <Border Background="White" 
+                    BorderBrush="#DDDDDD" 
+                    BorderThickness="1" 
+                    CornerRadius="8"
+                    Padding="20"
+                    Margin="0,0,0,15">
+                <StackPanel>
+                    <TextBlock x:Name="FioText" FontSize="18" FontWeight="Bold"/>
+                    <TextBlock x:Name="DolzhnostText" Foreground="Gray" Margin="0,5"/>
+                    <TextBlock x:Name="RoleText" Foreground="#E91E63" Margin="0,5"/>
+                </StackPanel>
+            </Border>
+
+             <!--Контакты--> 
+            <Border Background="White" 
+                    BorderBrush="#DDDDDD" 
+                    BorderThickness="1" 
+                    CornerRadius="8"
+                    Padding="20"
+                    Margin="0,0,0,15">
+                <StackPanel>
+                    <TextBlock Text="ID сотрудника:" FontWeight="Bold"/>
+                    <TextBlock x:Name="IdText" Margin="0,0,0,10"/>
+
+                    <TextBlock Text="Телефон:" FontWeight="Bold"/>
+                    <TextBlock x:Name="PhoneText" Margin="0,0,0,10"/>
+
+                    <TextBlock Text="Email:" FontWeight="Bold"/>
+                    <TextBlock x:Name="EmailText" Margin="0,0,0,10"/>
+
+                    <TextBlock Text="Дата рождения:" FontWeight="Bold"/>
+                    <TextBlock x:Name="BirthDateText"/>
+                </StackPanel>
+            </Border>
+
+            <Button Content="Назад" 
+                    Background="#E91E63"
+                    Foreground="White"
+                    Padding="20,10"
+                    Click="BackButton_Click"/>
+
+        </StackPanel>
     </Grid>
 </Window>

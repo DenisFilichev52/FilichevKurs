@@ -23,14 +23,8 @@ namespace FilichevKurs.View.Windowss
         {
             InitializeComponent();
             LoadUserInfo();
-
-            // Скрываем статистику для обычных клиентов
-            if (UserSession.CurrentUserRole == "Клиент")
-            {
-               
-                cardStats.Visibility = Visibility.Collapsed;
-            }
         }
+           
 
         private void LoadUserInfo()
         {
@@ -62,7 +56,10 @@ namespace FilichevKurs.View.Windowss
 
         private void btnProfile_Click(object sender, RoutedEventArgs e)
         {
-            ProfileWindow profWindow = new ProfileWindow();
+            // Берем ID текущего пользователя из сессии
+            int currentUserId = UserSession.CurrentUserId; // или как там называется свойство
+
+            ProfileWindow profWindow = new ProfileWindow(currentUserId);
             profWindow.Show();
         }
 

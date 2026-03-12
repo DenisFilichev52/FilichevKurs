@@ -87,15 +87,6 @@ namespace FilichevKurs.View.Windowss
                 query = query.Where(eq => eq.StatusID == statusId);
             }
 
-            // Поиск
-            if (!string.IsNullOrWhiteSpace(txtSearch?.Text))
-            {
-                string search = txtSearch.Text.ToLower();
-                query = query.Where(eq =>
-                    (eq.Name != null && eq.Name.ToLower().Contains(search)) ||
-                    (eq.InventoryNumber != null && eq.InventoryNumber.ToLower().Contains(search)));
-            }
-
             // Сортировка
             switch (cmbSort?.SelectedIndex ?? 0)
             {
@@ -157,8 +148,8 @@ namespace FilichevKurs.View.Windowss
             if (UserSession.CurrentUserRole == "Клиент")
             {
                 btnAdd.Visibility = Visibility.Collapsed;
-                btnEdit.Visibility = Visibility.Collapsed;
-                btnDelete.Visibility = Visibility.Collapsed;
+                
+                
             }
         }
 
@@ -166,7 +157,6 @@ namespace FilichevKurs.View.Windowss
         {
             cmbType.SelectedIndex = 0;
             cmbStatus.SelectedIndex = 0;
-            if (txtSearch != null) txtSearch.Clear();
             if (cmbSort != null) cmbSort.SelectedIndex = 0;
 
             dgEquipment.ItemsSource = allEquipment;
@@ -182,7 +172,13 @@ namespace FilichevKurs.View.Windowss
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Окно добавления техники", "Информация");
+            var addWindow = new AddEquipmentWindow();
+
+            if (addWindow.ShowDialog() == true)
+            {
+                // Обновляем список после добавления
+                LoadData();
+            }
         }
 
         private void btnEdit_Click(object sender, RoutedEventArgs e)

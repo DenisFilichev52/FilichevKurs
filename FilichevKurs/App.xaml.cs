@@ -16,5 +16,12 @@ namespace FilichevKurs
     {
         public static FilichevKursEntities context = new FilichevKursEntities();
         public static Model.Clients curentUser = new Model.Clients();
+        public static FilichevKursEntities DbContext { get; set; }
+
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            base.OnStartup(e);
+            DbContext = new FilichevKursEntities();
+        }
     }
 }

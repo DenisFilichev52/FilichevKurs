@@ -1,0 +1,101 @@
+﻿<Window x:Class="FilichevKurs.View.Windowss.AddEquipmentWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FilichevKurs.View.Windowss"
+        mc:Ignorable="d"
+        Title="AddEquipmentWindow" Height="450" Width="800">
+    <Grid>
+        <!-- Шапка -->
+        <Border Background="#1A237E" Height="50" VerticalAlignment="Top">
+            <TextBlock Text="ДОБАВЛЕНИЕ ТЕХНИКИ" 
+                       Foreground="White" 
+                       FontWeight="Bold"
+                       VerticalAlignment="Center"
+                       Margin="15,0"/>
+        </Border>
+
+        <!-- Форма -->
+        <ScrollViewer Margin="0,50,0,0">
+            <StackPanel Margin="20">
+
+                <!-- Обязательные поля -->
+                <TextBlock Text="Инвентарный номер *" FontWeight="Bold"/>
+                <TextBox x:Name="txtInventoryNumber" Padding="8" Margin="0,5,0,15"/>
+
+                <TextBlock Text="Название *" FontWeight="Bold"/>
+                <TextBox x:Name="txtName" Padding="8" Margin="0,5,0,15"/>
+
+                <TextBlock Text="Тип техники *" FontWeight="Bold"/>
+                <ComboBox x:Name="cmbType" Padding="8" Margin="0,5,0,15"
+                          DisplayMemberPath="TypeName"
+                          SelectedValuePath="EquipmentTypeID"/>
+
+                <!-- Необязательные поля -->
+                <TextBlock Text="Производитель" FontWeight="Bold"/>
+                <TextBox x:Name="txtManufacturer" Padding="8" Margin="0,5,0,15"/>
+
+                <TextBlock Text="Год производства" FontWeight="Bold"/>
+                <TextBox x:Name="txtProductionYear" Padding="8" Margin="0,5,0,15"/>
+
+                <TextBlock Text="Вес (кг)" FontWeight="Bold"/>
+                <TextBox x:Name="txtWeight" Padding="8" Margin="0,5,0,15"/>
+
+                <TextBlock Text="Длина (м)" FontWeight="Bold"/>
+                <TextBox x:Name="txtLength" Padding="8" Margin="0,5,0,15"/>
+
+                <TextBlock Text="Ширина (м)" FontWeight="Bold"/>
+                <TextBox x:Name="txtWidth" Padding="8" Margin="0,5,0,15"/>
+
+                <TextBlock Text="Высота (м)" FontWeight="Bold"/>
+                <TextBox x:Name="txtHeight" Padding="8" Margin="0,5,0,15"/>
+
+                <TextBlock Text="Экипаж" FontWeight="Bold"/>
+                <TextBox x:Name="txtCrew" Padding="8" Margin="0,5,0,15"/>
+
+                <TextBlock Text="Макс. скорость (км/ч)" FontWeight="Bold"/>
+                <TextBox x:Name="txtMaxSpeed" Padding="8" Margin="0,5,0,15"/>
+
+                <TextBlock Text="Мощность двигателя (л.с.)" FontWeight="Bold"/>
+                <TextBox x:Name="txtEnginePower" Padding="8" Margin="0,5,0,15"/>
+
+                <TextBlock Text="Тип брони" FontWeight="Bold"/>
+                <TextBox x:Name="txtArmorType" Padding="8" Margin="0,5,0,15"/>
+
+                <TextBlock Text="Вооружение" FontWeight="Bold"/>
+                <TextBox x:Name="txtArmament" Padding="8" Margin="0,5,0,15" Height="60" 
+                         TextWrapping="Wrap" AcceptsReturn="True"/>
+
+                <TextBlock Text="Описание" FontWeight="Bold"/>
+                <TextBox x:Name="txtDescription" Padding="8" Margin="0,5,0,15" Height="80" 
+                         TextWrapping="Wrap" AcceptsReturn="True"/>
+
+                <TextBlock Text="Статус" FontWeight="Bold"/>
+                <ComboBox x:Name="cmbStatus" Padding="8" Margin="0,5,0,15"
+                          DisplayMemberPath="StatusName"
+                          SelectedValuePath="StatusID"/>
+
+                <TextBlock Text="Дата поступления" FontWeight="Bold"/>
+                <DatePicker x:Name="dpArrivalDate" Margin="0,5,0,25"/>
+
+                <!-- Кнопки -->
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Button Content="Сохранить" 
+                            Background="#E91E63"
+                            Foreground="White"
+                            Padding="30,12"
+                            Margin="0,0,10,0"
+                            Click="SaveButton_Click"/>
+
+                    <Button Content="Отмена" 
+                            Background="Gray"
+                            Foreground="White"
+                            Padding="30,12"
+                            Click="CancelButton_Click"/>
+                </StackPanel>
+
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Window>

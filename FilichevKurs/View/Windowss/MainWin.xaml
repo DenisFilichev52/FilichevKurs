@@ -196,7 +196,7 @@
                           Foreground="#1A1A2E" Margin="0,24,0,16"/>
 
                     <!-- Быстрые действия -->
-                    <UniformGrid Grid.Row="2" Columns="4" Margin="0,0,0,16">
+                    <UniformGrid Grid.Row="2" Columns="3" Margin="0,0,0,16">
                         <!-- Карточка 1 -->
                         <Border Style="{StaticResource ContentCard}" Margin="8" 
                            MouseLeftButtonUp="btnEquipment_Click" Cursor="Hand">
@@ -247,22 +247,7 @@
                             </StackPanel>
                         </Border>
 
-                        <!-- Карточка 4 -->
-                        <Border x:Name="cardStats" Style="{StaticResource ContentCard}" Margin="8" 
-                           MouseLeftButtonUp="btnStats_Click" Cursor="Hand">
-                            <StackPanel>
-                                <Border Width="48" Height="48" CornerRadius="12" 
-                                   Background="#FFFBF0" Margin="0,0,0,12">
-                                    <TextBlock Text="&#128202;" FontSize="24" 
-                                          Foreground="#F59E0B" HorizontalAlignment="Center" 
-                                          VerticalAlignment="Center"/>
-                                </Border>
-                                <TextBlock Text="Статистика" FontSize="16" 
-                                      FontWeight="Bold" Foreground="#1A1A2E"/>
-                                <TextBlock Text="Отчеты и аналитика" 
-                                      FontSize="12" Foreground="#5F6368" Margin="0,4,0,0"/>
-                            </StackPanel>
-                        </Border>
+                        
                     </UniformGrid>
 
                     <!-- Заголовок статистика -->

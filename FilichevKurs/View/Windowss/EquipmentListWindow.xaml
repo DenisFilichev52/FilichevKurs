@@ -55,12 +55,6 @@
                 <ComboBox x:Name="cmbStatus" Grid.Column="3" Margin="10,0,20,0" 
                      SelectionChanged="FilterOrSortChanged"/>
 
-                <!-- Поиск -->
-                <TextBlock Grid.Column="4" Text="Поиск:" VerticalAlignment="Center" 
-                      FontWeight="SemiBold" Foreground="#1A1A2E"/>
-                <TextBox x:Name="txtSearch" Grid.Column="5" Margin="10,0,20,0" 
-                    Padding="8" BorderBrush="#DDD" BorderThickness="1"/>
-
                 <!-- Сортировка -->
                 <StackPanel Grid.Column="6" Orientation="Horizontal" HorizontalAlignment="Right">
                     <TextBlock Text="Сортировка:" VerticalAlignment="Center" 
@@ -253,31 +247,7 @@
                     </Button.Template>
                 </Button>
 
-                <Button x:Name="btnEdit" Content="&#9998; Редактировать" 
-                   Padding="20,12" Margin="0,0,10,0" Background="#0F3460" 
-                   Foreground="White" BorderThickness="0" Click="btnEdit_Click">
-                    <Button.Template>
-                        <ControlTemplate TargetType="Button">
-                            <Border Background="{TemplateBinding Background}" 
-                               CornerRadius="8" Padding="{TemplateBinding Padding}">
-                                <ContentPresenter HorizontalAlignment="Center"/>
-                            </Border>
-                        </ControlTemplate>
-                    </Button.Template>
-                </Button>
-
-                <Button x:Name="btnDelete" Content="&#10007; Удалить" 
-                   Padding="20,12" Margin="0,0,10,0" Background="#DC2626" 
-                   Foreground="White" BorderThickness="0" Click="btnDelete_Click">
-                    <Button.Template>
-                        <ControlTemplate TargetType="Button">
-                            <Border Background="{TemplateBinding Background}" 
-                               CornerRadius="8" Padding="{TemplateBinding Padding}">
-                                <ContentPresenter HorizontalAlignment="Center"/>
-                            </Border>
-                        </ControlTemplate>
-                    </Button.Template>
-                </Button>
+                
 
                 <Button x:Name="btnClose" Content="Закрыть" 
                    Padding="20,12" Background="#6B7280" 
