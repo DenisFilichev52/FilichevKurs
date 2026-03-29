@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FilichevKurs.View.Windowss"
         mc:Ignorable="d"
-        Title="RegistrationWindow" Height="800" Width="1000">
+        Title="RegistrationWindow" Height="1000" Width="1500">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -20,7 +20,15 @@
                 CornerRadius="16" 
                 Padding="40" 
                 Margin="30"
-                MaxHeight="700">
+                MaxHeight="700" RenderTransformOrigin="0.5,0.5">
+            <Border.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform AngleX="0"/>
+                    <RotateTransform/>
+                    <TranslateTransform X="0"/>
+                </TransformGroup>
+            </Border.RenderTransform>
             <Border.Effect>
                 <DropShadowEffect ShadowDepth="4" 
                                 BlurRadius="20" 
