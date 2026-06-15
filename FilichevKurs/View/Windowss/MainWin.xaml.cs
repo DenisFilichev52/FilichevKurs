@@ -23,8 +23,10 @@ namespace FilichevKurs.View.Windowss
         {
             InitializeComponent();
             LoadUserInfo();
+            WindowState = WindowState.Maximized;
+
         }
-           
+
 
         private void LoadUserInfo()
         {
@@ -52,6 +54,12 @@ namespace FilichevKurs.View.Windowss
         {
             EventsListWindow evWindow = new EventsListWindow();
             evWindow.Show();
+        }
+
+        private void btnClients_Click(object sender, RoutedEventArgs e)
+        {
+            var clientsWindow = new ClientsWindow();
+            clientsWindow.Show();
         }
 
         private void btnProfile_Click(object sender, RoutedEventArgs e)

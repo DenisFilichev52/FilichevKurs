@@ -22,6 +22,7 @@ namespace FilichevKurs.View.Windowss
         public LoginWindow()
         {
             InitializeComponent();
+            WindowState = WindowState.Maximized;
         }
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {

@@ -27,6 +27,7 @@ namespace FilichevKurs.View.Windowss
         public EquipmentDetailsWindow(MilitaryEquipment selectedEquipment)
         {
             InitializeComponent();
+            WindowState = WindowState.Maximized;
 
             if (selectedEquipment == null)
             {

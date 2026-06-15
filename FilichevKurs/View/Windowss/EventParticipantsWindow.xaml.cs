@@ -30,6 +30,7 @@ namespace FilichevKurs.View.Windowss
             currentEvent = evt;
             LoadEventInfo();
             LoadParticipants();
+            WindowState = WindowState.Maximized;
         }
 
         private void LoadEventInfo()

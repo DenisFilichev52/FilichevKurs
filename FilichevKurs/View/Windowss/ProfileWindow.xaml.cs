@@ -24,6 +24,7 @@ namespace FilichevKurs.View.Windowss
         {
             InitializeComponent();
             LoadData(employeeId);
+            WindowState = WindowState.Maximized;
         }
 
         private void LoadData(int id)

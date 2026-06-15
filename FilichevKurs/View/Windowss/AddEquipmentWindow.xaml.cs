@@ -24,18 +24,23 @@ namespace FilichevKurs.View.Windowss
         {
             InitializeComponent();
             LoadData();
+            WindowState = WindowState.Maximized;
         }
 
         private void LoadData()
         {
             cmbType.ItemsSource = App.DbContext.EquipmentTypes.ToList();
+            cmbType.DisplayMemberPath = "TypeName";
+            cmbType.SelectedValuePath = "EquipmentTypeID"; // важно!
+
             cmbStatus.ItemsSource = App.DbContext.EquipmentStatus.ToList();
-            cmbStatus.SelectedValue = 1; // статус по умолчанию
+            cmbStatus.DisplayMemberPath = "StatusName";
+            cmbStatus.SelectedValuePath = "StatusID"; // важно!
+            cmbStatus.SelectedIndex = 0; // выбираем первый по умолчанию
         }
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            // Проверка обязательных полей
             if (string.IsNullOrWhiteSpace(txtInventoryNumber.Text))
             {
                 MessageBox.Show("Введите инвентарный номер");
@@ -48,33 +53,38 @@ namespace FilichevKurs.View.Windowss
                 return;
             }
 
-            if (cmbType.SelectedValue == null)
+            // Проверяем что выбран тип
+            if (cmbType.SelectedItem == null)
             {
                 MessageBox.Show("Выберите тип техники");
                 return;
             }
 
-            // Создаем объект
+            // Берем ID напрямую из объекта, а не через SelectedValue
+            var selectedType = cmbType.SelectedItem as EquipmentTypes;
+            int typeId = selectedType.TypeID;
+
+            var selectedStatus = cmbStatus.SelectedItem as EquipmentStatus;
+            int statusId = selectedStatus?.StatusID ?? 1;
+
             var equipment = new MilitaryEquipment
             {
                 InventoryNumber = txtInventoryNumber.Text,
                 Name = txtName.Text,
-                TypeID = (int)cmbType.SelectedValue,
-
-                // Необязательные поля
-                Manufacturer = string.IsNullOrWhiteSpace(txtManufacturer.Text) ? null : txtManufacturer.Text,
-                ProductionYear = ParseInt(txtProductionYear.Text),
-                Weight = ParseDecimal(txtWeight.Text),
-                Length = ParseDecimal(txtLength.Text),
-                Width = ParseDecimal(txtWidth.Text),
-                Height = ParseDecimal(txtHeight.Text),
-                Crew = ParseInt(txtCrew.Text),
-                MaxSpeed = ParseInt(txtMaxSpeed.Text),
-                EnginePower = ParseInt(txtEnginePower.Text),
-                ArmorType = string.IsNullOrWhiteSpace(txtArmorType.Text) ? null : txtArmorType.Text,
-                Armament = string.IsNullOrWhiteSpace(txtArmament.Text) ? null : txtArmament.Text,
-                Description = string.IsNullOrWhiteSpace(txtDescription.Text) ? null : txtDescription.Text,
-                StatusID = (int?)cmbStatus.SelectedValue ?? 1,
+                TypeID = typeId,
+                Manufacturer = GetStringOrNull(txtManufacturer),
+                ProductionYear = GetIntOrNull(txtProductionYear),
+                Weight = GetDecimalOrNull(txtWeight),
+                Length = GetDecimalOrNull(txtLength),
+                Width = GetDecimalOrNull(txtWidth),
+                Height = GetDecimalOrNull(txtHeight),
+                Crew = GetIntOrNull(txtCrew),
+                MaxSpeed = GetIntOrNull(txtMaxSpeed),
+                EnginePower = GetIntOrNull(txtEnginePower),
+                ArmorType = GetStringOrNull(txtArmorType),
+                Armament = GetStringOrNull(txtArmament),
+                Description = GetStringOrNull(txtDescription),
+                StatusID = statusId,
                 ArrivalDate = dpArrivalDate.SelectedDate
             };
 
@@ -86,6 +96,23 @@ namespace FilichevKurs.View.Windowss
             this.Close();
         }
 
+        private string GetStringOrNull(TextBox textBox)
+        {
+            return string.IsNullOrWhiteSpace(textBox.Text) ? null : textBox.Text;
+        }
+
+        private int? GetIntOrNull(TextBox textBox)
+        {
+            if (string.IsNullOrWhiteSpace(textBox.Text)) return null;
+            return int.TryParse(textBox.Text, out int result) ? result : (int?)null;
+        }
+
+        private decimal? GetDecimalOrNull(TextBox textBox)
+        {
+            if (string.IsNullOrWhiteSpace(textBox.Text)) return null;
+            var text = textBox.Text.Replace('.', ',');
+            return decimal.TryParse(text, out decimal result) ? result : (decimal?)null;
+        }
         private int? ParseInt(string text)
         {
             return int.TryParse(text, out int result) ? result : (int?)null;

@@ -63,11 +63,17 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="UserSession.cs" />
+    <Compile Include="View\Windowss\AddClientWindow.xaml.cs">
+      <DependentUpon>AddClientWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Windowss\AddEquipmentWindow.xaml.cs">
       <DependentUpon>AddEquipmentWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Windowss\ClientRegistrationWindow.xaml.cs">
       <DependentUpon>ClientRegistrationWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Windowss\ClientsWindow.xaml.cs">
+      <DependentUpon>ClientsWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Windowss\EquipmentDetailsWindow.xaml.cs">
       <DependentUpon>EquipmentDetailsWindow.xaml</DependentUpon>
@@ -93,11 +99,19 @@
     <Compile Include="View\Windowss\RegistrationWindow.xaml.cs">
       <DependentUpon>RegistrationWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="View\Windowss\AddClientWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Windowss\AddEquipmentWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Windowss\ClientRegistrationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Windowss\ClientsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -28,9 +28,10 @@
                 <TextBox x:Name="txtName" Padding="8" Margin="0,5,0,15"/>
 
                 <TextBlock Text="Тип техники *" FontWeight="Bold"/>
-                <ComboBox x:Name="cmbType" Padding="8" Margin="0,5,0,15"
-                          DisplayMemberPath="TypeName"
-                          SelectedValuePath="EquipmentTypeID"/>
+                <ComboBox x:Name="cmbType" 
+          DisplayMemberPath="TypeName"
+          SelectedValuePath="EquipmentTypeID"
+          Padding="8" Margin="0,5,0,15"/>
 
                 <!-- Необязательные поля -->
                 <TextBlock Text="Производитель" FontWeight="Bold"/>
@@ -72,9 +73,10 @@
                          TextWrapping="Wrap" AcceptsReturn="True"/>
 
                 <TextBlock Text="Статус" FontWeight="Bold"/>
-                <ComboBox x:Name="cmbStatus" Padding="8" Margin="0,5,0,15"
-                          DisplayMemberPath="StatusName"
-                          SelectedValuePath="StatusID"/>
+                <ComboBox x:Name="cmbStatus" 
+          DisplayMemberPath="StatusName"
+          SelectedValuePath="StatusID"
+          Padding="8" Margin="0,5,0,15"/>
 
                 <TextBlock Text="Дата поступления" FontWeight="Bold"/>
                 <DatePicker x:Name="dpArrivalDate" Margin="0,5,0,25"/>

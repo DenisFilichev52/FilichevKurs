@@ -24,6 +24,7 @@ namespace FilichevKurs.View.Windowss
         {
             InitializeComponent();
             dpBirthDate.SelectedDate = DateTime.Now.AddYears(-30);
+            WindowState = WindowState.Maximized;
         }
 
         private void btnRegister_Click(object sender, RoutedEventArgs e)

@@ -30,6 +30,8 @@ namespace FilichevKurs.View.Windowss
         {
             InitializeComponent();
             InitializeCommand();
+            WindowState = WindowState.Maximized;
+
             LoadData();        // ← Сначала загружаем данные
             LoadFilters();     // ← Потом фильтры
             CheckUserRole();

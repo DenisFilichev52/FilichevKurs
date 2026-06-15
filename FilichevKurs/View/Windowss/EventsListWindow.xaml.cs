@@ -26,8 +26,8 @@ namespace FilichevKurs.View.Windowss
         public EventsListWindow()
         {
             InitializeComponent();
-           
-            LoadData(); // Автозагрузка
+            WindowState = WindowState.Maximized;
+            LoadData();
         }
 
        
@@ -259,7 +259,7 @@ namespace FilichevKurs.View.Windowss
 
             Button btnParticipants = new Button
             {
-                Content = "👥 Участники",
+                Content = "Участники",
                 Background = new SolidColorBrush(Color.FromRgb(15, 52, 96)),
                 Foreground = Brushes.White,
                 Padding = new Thickness(12, 8, 12, 8),
@@ -283,20 +283,7 @@ namespace FilichevKurs.View.Windowss
             };
             buttonsPanel.Children.Add(btnParticipants);
 
-            Button btnReg = new Button
-            {
-                Content = "✓ Записаться",
-                Background = new SolidColorBrush(Color.FromRgb(233, 69, 96)),
-                Foreground = Brushes.White,
-                Padding = new Thickness(12, 8, 12, 8),
-                BorderThickness = new Thickness(0),
-                FontSize = 12,
-                FontWeight = FontWeights.SemiBold,
-                Cursor = Cursors.Hand,
-                Tag = evt
-            };
-            btnReg.Click += BtnReg_Click;
-            buttonsPanel.Children.Add(btnReg);
+           
 
             content.Children.Add(buttonsPanel);
 

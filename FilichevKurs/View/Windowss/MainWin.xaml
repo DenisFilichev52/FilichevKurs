@@ -120,8 +120,10 @@
                        Style="{StaticResource NavButton}" Click="btnEvents_Click"/>
                     <Button x:Name="btnProfile" Content="&#128100; Профиль" 
                        Style="{StaticResource NavButton}" Click="btnProfile_Click"/>
-                    
-                </StackPanel>
+                <Button x:Name="btnClients" Content="&#128100; Список посетителей" 
+                       Style="{StaticResource NavButton}" Click="btnClients_Click"/>
+
+            </StackPanel>
             </Border>
 
             <!-- Основной контент -->
@@ -148,38 +150,7 @@
                                       FontWeight="Bold" Foreground="#1A1A2E" Margin="0,0,0,8"/>
                                 <TextBlock x:Name="txtWelcome" FontSize="16" 
                                       Foreground="#5F6368" TextWrapping="Wrap" MaxWidth="600" HorizontalAlignment="Left"/>
-                            <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
-                                <Button Content="Просмотреть технику" 
-                                       Background="#E94560" Foreground="White" 
-                                       Padding="20,12" FontSize="14" 
-                                       FontWeight="SemiBold" BorderThickness="0" 
-                                       Click="btnEquipment_Click" Cursor="Hand">
-                                    <Button.Template>
-                                        <ControlTemplate TargetType="Button">
-                                            <Border Background="{TemplateBinding Background}" 
-                                                   CornerRadius="8" Padding="{TemplateBinding Padding}">
-                                                <ContentPresenter HorizontalAlignment="Center"/>
-                                            </Border>
-                                        </ControlTemplate>
-                                    </Button.Template>
-                                </Button>
-                                <Button Content="Афиша мероприятий" 
-                                       Background="Transparent" Foreground="#E94560" 
-                                       Padding="20,12" FontSize="14" FontWeight="SemiBold" 
-                                       BorderThickness="2" BorderBrush="#E94560" 
-                                       Margin="12,0,0,0" Click="btnEvents_Click" Cursor="Hand">
-                                    <Button.Template>
-                                        <ControlTemplate TargetType="Button">
-                                            <Border Background="{TemplateBinding Background}" 
-                                                   BorderBrush="{TemplateBinding BorderBrush}" 
-                                                   BorderThickness="{TemplateBinding BorderThickness}" 
-                                                   CornerRadius="8" Padding="{TemplateBinding Padding}">
-                                                <ContentPresenter HorizontalAlignment="Center"/>
-                                            </Border>
-                                        </ControlTemplate>
-                                    </Button.Template>
-                                </Button>
-                            </StackPanel>
+                            
                         </StackPanel>
 
                             <Border Grid.Column="1" Width="200" Height="200" 
@@ -257,7 +228,7 @@
                     <UniformGrid Grid.Row="4" Columns="4" Margin="0,0,0,32">
                         <Border Background="#E94560" CornerRadius="12" Padding="20" Margin="8">
                             <StackPanel>
-                                <TextBlock Text="50+" FontSize="36" FontWeight="Bold" 
+                                <TextBlock Text="16" FontSize="36" FontWeight="Bold" 
                                       Foreground="White"/>
                                 <TextBlock Text="Единиц техники" FontSize="14" 
                                       Foreground="#FFCCCB" Margin="0,4,0,0"/>
@@ -265,7 +236,7 @@
                         </Border>
                         <Border Background="#0F3460" CornerRadius="12" Padding="20" Margin="8">
                             <StackPanel>
-                                <TextBlock Text="12" FontSize="36" FontWeight="Bold" 
+                                <TextBlock Text="9" FontSize="36" FontWeight="Bold" 
                                       Foreground="White"/>
                                 <TextBlock Text="Типов вооружения" FontSize="14" 
                                       Foreground="#B0C4DE" Margin="0,4,0,0"/>
